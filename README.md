@@ -8,6 +8,7 @@ How to run this game
 2. open the folder
 3. open terminal or cmd in this folder or you can copy and paste the path
 4. type python game.py
+5.your will get key which to use within the code
 5. Enjoy the game
 
 In case you want to modify it, you are always welcome.

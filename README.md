@@ -1,18 +1,35 @@
-# Play-Stone-Paper-and-Scissor
 
-This is a stone-paper-scissor guess game based on python. If you want run this code, you have to install python 3. Follow the steps to run this game.
+# STONE PAPER SCISSOR
 
-How to run this game
--------------------------------------
-1. Download or clone the folder
-2. open the folder
-3. open terminal or cmd in this folder or you can copy and paste the path
-4. type python game.py
-5.your will get key which to use within the code
-6. Enjoy the game
+This is a project created with childhood memorys. it is fully based on logic no library has been used.
 
-In case you want to modify it, you are always welcome.
-If you want to contact with me, you can mail me.   
 
-kamesh1209s@gmail.com
-name- kamesh
+
+## Installation
+
+Install python
+    
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  https://github.com/hack505/Play-Stone-Paper-and-Scissor.git
+  python stone,paper,scissor.py
+```
+
+
+## Authors
+
+- [@hack505](https://www.github.com/hack505)
+
+
+## Feedback
+
+If you have any feedback, please reach out to us at kamesh1209s@gmail.com
+
+
+## License
+
+[MIT](https://github.com/hack505/Play-Stone-Paper-and-Scissor/blob/main/LICENSE)
+

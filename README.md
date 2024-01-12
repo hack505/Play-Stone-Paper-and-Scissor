@@ -17,7 +17,7 @@ Install python
 To run tests, run the following command
 
 ```bash
-  https://github.com/hack505/Play-Stone-Paper-and-Scissor.git
+  git clone https://github.com/hack505/Play-Stone-Paper-and-Scissor.git
   python stone,paper,scissor.py
 ```
 

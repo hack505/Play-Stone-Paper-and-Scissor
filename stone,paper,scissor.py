@@ -1,3 +1,4 @@
+import json
 import random
 
 # for user input
@@ -8,21 +9,26 @@ Scissor -> 2""")
 
 
 def bot():
-    user_choice = input(">")  # to get user choice of wish
-    bot_choice = random.randrange(0, 3)
-    wrong = False
+    global user_choice
 
-    if len(user_choice) == 1:
-        user_choice = int(user_choice)
-    else:
-        print("--choice should be 0 or 1 or 2 only--")
+    try:
+        user_choice_str = input(">")  # to get user choice of wish
+
+        if len(user_choice_str) != 1:
+            raise ValueError("Choice should be a single character.")
+
+        user_choice = int(user_choice_str)
+
+        if user_choice < 0 or user_choice > 2:
+            raise ValueError("Choice should be between 0 and 2.")
+
+    except ValueError as e:
+        print(f"Invalid input: {e}")
         print("Try again!")
-        exit()
+        return
 
-    if user_choice > 2:
-        wrong = True
-        print("--choice should be 0 or 1 or 2 only--")
-        print(" ")
+    bot_choice = ai(user_choice)
+    wrong = False
 
     #     Logic
     case_1 = {'won': 0, 'loss': 0}  # draw
@@ -74,7 +80,7 @@ def bot():
 
     # final result
     print("User choice: " + f"{words.get(user_choice)}")
-    print("Bot  choice: " + f"{words[bot_choice]}")
+    print("Bot  choice: " + f"{words.get(bot_choice)}")
     print("--------W I N--------")
 
     # for wrong number choice
@@ -82,6 +88,78 @@ def bot():
         won = 'Draw'
 
     print(f"         {won}")
+
+    # increment user's choice by 1 in the JSON file
+    adder(user_choice)
+
+
+def adder(user_choice):
+    try:
+        # Read the JSON file
+        with open('data.json', 'r') as files:
+            data = json.load(files)
+
+            if user_choice == 0:
+                data['rock'] += 1
+            elif user_choice == 1:
+                data['paper'] += 1
+            elif user_choice == 2:
+                data['scissor'] += 1
+
+        # Write the updated JSON data to the file
+        with open('data.json', 'w') as file:
+            file.write(json.dumps(data, indent=4))
+
+    except json.JSONDecodeError as e:
+        print(f"Error reading JSON file: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+
+def ai(user_choice_here):
+    try:
+        # load json file into a python object
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+    except json.JSONDecodeError as e:
+        print(f"Error: {e}")
+        return None
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return None
+
+    rock = int(data.get("rock"))
+    paper = int(data.get("paper"))
+    scissor = int(data.get("scissor"))
+
+    data = [rock, paper, scissor]
+    sample_space = rock + paper + scissor
+
+    output = []
+
+    for x in range(len(data)):
+        # probabilty = favorable / sample_space
+        probability = float(data[x]) / sample_space
+        # then we will store in list to compare the highest
+        output.append(probability)
+
+    max_probability = max(output)
+
+    for i, probability in enumerate(output):
+        if probability == max_probability:
+            if i == 0:
+                return 0
+            elif i == 1:
+                return 1
+            elif i == 2:
+                return 2
+            else:
+                return f"{random.randrange(3)}"
+
+    try:
+        adder(bot.user_choice)
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 
 # for continues game play

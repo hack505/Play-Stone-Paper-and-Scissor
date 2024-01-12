@@ -1,7 +1,10 @@
 
 # STONE PAPER SCISSOR
 
-This is a project created with childhood memorys. it is fully based on logic no library has been used.
+This is a project created with childhood memorys.
+
+This is a slick Python implementation of "Rock, Paper, Scissors" between you and a cunning AI bot. The AI learns from your past choices, stored in a JSON file, to make smarter decisions. The more you play, the better it gets!
+
 
 
 
